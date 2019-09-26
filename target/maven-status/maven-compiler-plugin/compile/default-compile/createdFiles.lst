@@ -1,0 +1,11 @@
+homework\commonInit\InputData.class
+homework\store\entities\Order.class
+homework\store\entities\Client.class
+homework\store\services\StoreService.class
+homework\store\Main.class
+homework\commonInit\ConnectionService.class
+homework\store\services\OrderService.class
+homework\store\services\GoodsService.class
+homework\store\entities\Goods.class
+homework\commonInit\PropertyReader.class
+homework\store\services\ClientService.class
