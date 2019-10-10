@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package homework.store.services;
+package com.store.services;
 
-import homework.commonInit.ConnectionService;
-import homework.commonInit.InputData;
-import homework.store.entities.Goods;
-import homework.store.entities.Order;
+import com.commonInit.ConnectionService;
+import com.commonInit.InputData;
+import com.store.entities.Goods;
+import com.store.entities.Order;
+import com.store.services.ClientService;
+import com.store.services.GoodsService;
+import com.store.services.OrderService;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;

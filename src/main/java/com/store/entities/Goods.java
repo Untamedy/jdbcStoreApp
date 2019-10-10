@@ -1,4 +1,4 @@
-package homework.store.entities;
+package com.store.entities;
 
 /**
  *

@@ -1,4 +1,4 @@
-package homework.commonInit;
+package com.commonInit;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

@@ -1,6 +1,7 @@
-package homework.store.entities;
+package com.store.entities;
 
 import java.util.List;
+import com.store.entities.Client;
 
 /**
  *

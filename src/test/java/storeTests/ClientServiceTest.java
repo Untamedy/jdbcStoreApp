@@ -1,10 +1,10 @@
 package storeTests;
 
-import homework.commonInit.ConnectionService;
-import homework.commonInit.InputData;
-import homework.commonInit.PropertyReader;
-import homework.store.entities.Client;
-import homework.store.services.ClientService;
+import com.commonInit.ConnectionService;
+import com.commonInit.InputData;
+import com.commonInit.PropertyReader;
+import com.store.entities.Client;
+import com.store.services.ClientService;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;

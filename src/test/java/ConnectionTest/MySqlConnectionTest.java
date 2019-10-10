@@ -5,8 +5,8 @@
  */
 package ConnectionTest;
 
-import homework.commonInit.ConnectionService;
-import homework.commonInit.PropertyReader;
+import com.commonInit.ConnectionService;
+import com.commonInit.PropertyReader;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;

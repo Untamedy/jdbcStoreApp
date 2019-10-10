@@ -5,13 +5,14 @@
  */
 package storeTests;
 
-import homework.commonInit.ConnectionService;
-import homework.commonInit.InputData;
-import homework.commonInit.PropertyReader;
-import homework.store.entities.Goods;
-import homework.store.entities.Order;
-import homework.store.services.GoodsService;
-import homework.store.services.OrderService;
+import com.commonInit.ConnectionService;
+import com.commonInit.InputData;
+import com.commonInit.PropertyReader;
+import com.store.entities.Goods;
+import com.store.entities.Order;
+import com.store.services.GoodsService;
+import com.store.services.OrderService;
+import com.store.entities.Client;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -34,8 +35,8 @@ public class OrderServiceTest extends Assert {
     private static Connection connection;
     private static PropertyReader reader;
     private static List<Goods> goods = new ArrayList<>();
-    private static String path = "src\\main\\resources\\prop.properties";
-    //private static String path = "src\\main\\resources\\propmysql.properties";
+   // private static String path = "src\\main\\resources\\prop.properties";
+    private static String path = "src\\main\\resources\\propmysql.properties";
     
 
     @BeforeClass
@@ -71,7 +72,8 @@ public class OrderServiceTest extends Assert {
     @Test
     public void getOrder(){
         Order order = orderService.getOrder("order_test");
-        assertTrue(order.getCustomer().getName().equals("Fruts"));
+        Client client = order.getCustomer();
+        assertTrue(client.getName().equals("Fruts"));
     }
 
 }

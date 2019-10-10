@@ -1,8 +1,8 @@
-package homework.store.services;
+package com.store.services;
 
-import homework.store.entities.Client;
-import homework.store.entities.Goods;
-import homework.store.entities.Order;
+import com.store.entities.Client;
+import com.store.entities.Goods;
+import com.store.entities.Order;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
