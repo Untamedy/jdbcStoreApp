@@ -16,65 +16,43 @@
     </head>
     <body>
 
-        <div>           
-            <%
-                List<Client> clients = (List<Client>) request.getAttribute("clients");
-                List<Goods> goods = (List<Goods>) request.getAttribute("goods");
-                out.println("<form action=\"addOrder\" method=\"Post\">");
-                out.println(" <select name=\"client\">");
-                for (Client c : clients) {
-                    out.println("<option>" + c.getName() + "</option>");
+        <%
+            List<Client> clients = (List<Client>) request.getAttribute("clients");
+            List<Goods> goods = (List<Goods>) request.getAttribute("goods");
+            out.println("<form action=\"addOrder\" method=\"Post\">");
+            out.println(" <select name=\"client\">");
+            for (Client c : clients) {
+                out.println("<option>" + c.getName() + "</option>");
+            }
+            out.println("</select>");
+            out.println(" <select name=\"goods\">");
+            out.println("<br>");
+            out.println("<table  border = \"1\">");
+            out.println("<tr>"
+                    + "<th> Goods </th>"
+                    + "<th>Articul</th> "
+                    + "<th>Select </th> "
+                    + "</tr> ");
+            if (!goods.isEmpty()) {
+                for (Goods g : goods) {
+                    out.println("<tr>");
+                    out.println("<td>" + g.getName() + "</td>");
+                    out.println("<td>" + g.getArticul() + "</td>");
+                    out.println("<td> <input type=\"checkbox\" name=\"goods\" value=\"" + g.getId() + "\"" + "</td>");
+                    out.println("</tr>");
                 }
-                out.println("</select>");
-                out.println(" <select name=\"goods\">");
-                out.println("<br>");
-                out.println("<table  border = \"1\">");
-                out.println("<tr>"
-                        + "<th> Goods </th>"
-                        + "<th>Articul</th> "
-                        + "<th>Select </th> "
-                        + "</tr> ");
-                if (!goods.isEmpty()) {
-                    for (Goods g : goods) {
-                        out.println("<tr>");
-                        out.println("<td>" + g.getName() + "</td>");
-                        out.println("<td>" + g.getArticul() + "</td>");
-                        out.println("<td> <input type=\"checkbox\" name=\"goods\" value=\"" + g.getId() + "\"" + "</td>");
-                        out.println("</tr>");
-                    }
-                } else {
-                    out.println("<h1>" + "Sorry, we don't have any information yet" + "</h1>");
-                }
-                out.println("<input type = \"submit\" value = \"Delete marked\" />");
+            } else {
+                out.println("<h1>" + "Sorry, we don't have any information yet" + "</h1>");
+            }
+            out.println("<input type = \"submit\" value = \"Delete marked\" />");
+            out.println("</form>");
+
+        %>
 
 
-            %>
-            <form action="selectByParam" method="Post"  >
-                <label>By parameter:
-                    <select name="param">
-                        <option>price</option>
-                        <option>square</option>
-                        <option>room</option>
-                    </select>
-                </label>
-                <label>Min value:
-                    <input type="text" name="min" required placeholder="Min value"><br />
-                </label>
-                <label>Max value:
-                    <input type="text" name="max" required placeholder="Max value"><br />
-                </label>
-
-                <br>
-                <button type="submit">Select</button>
-                <br>
-                <br>    
-            </form>>
-
-
-
-        </div>
-        <div>
-            <button onclick="location.href = 'index.jsp'">Back to main</button>
-        </div>
-    </body>
+    </div>
+    <div>
+        <button onclick="location.href = 'index.jsp'">Back to main</button>
+    </div>
+</body>
 </html>
