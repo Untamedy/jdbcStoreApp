@@ -73,7 +73,7 @@ public class OrderServiceTest extends Assert {
     public void getOrder(){
         Order order = orderService.getOrder("order_test");
         Client client = order.getCustomer();
-        assertTrue(client.getName().equals("Fruts"));
+        assertTrue(client.getId()==1);
     }
 
 }

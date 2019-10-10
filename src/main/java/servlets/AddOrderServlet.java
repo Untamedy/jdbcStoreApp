@@ -6,8 +6,12 @@
 package servlets;
 
 import com.commonInit.Init;
+import com.store.entities.Client;
+import com.store.entities.Goods;
 import com.store.services.StoreService;
 import java.io.IOException;
+
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -34,6 +38,11 @@ public class AddOrderServlet extends HttpServlet{
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response){
+        List<Client> clients = service.getAllClient();
+        List<Goods> goods = service.getAllGoods();
+        
+        request.setAttribute("clients", clients);
+        request.setAttribute("goods", goods);
         RequestDispatcher dispatcher = request.getRequestDispatcher("addOrder.jsp");
         try {
             dispatcher.forward(request, response);

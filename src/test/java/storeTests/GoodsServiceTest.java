@@ -22,8 +22,8 @@ public class GoodsServiceTest extends Assert {
     private static GoodsService goodsService;
     private static ConnectionService connectionService;
     private static Connection connection;
-    private static String path = "src\\main\\resources\\prop.properties";
-    //private static String path = "src\\main\\resources\\propmysql.properties";
+    //private static String path = "src\\main\\resources\\prop.properties";
+    private static String path = "src\\main\\resources\\propmysql.properties";
 
     @BeforeClass
     public static void init() {
