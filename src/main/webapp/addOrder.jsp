@@ -20,6 +20,17 @@
             <%
                 List<Client> clients =(List<Client>) request.getAttribute("clients");
                 List<Goods> goods = (List<Goods>) request.getAttribute("goods");
+                out.println("<form action=\"addOrder\" method=\"Post\">");
+                out.println(" <select name=\"client\">");
+                
+                   
+                       
+                            <option>price</option>
+                            <option>square</option>
+                            <option>room</option>
+                        </select>
+                            </form>
+
  
 
             %>
