@@ -28,6 +28,8 @@ public class OrderService {
 
     public OrderService(Connection connection) {
         this.connection = connection;
+        this.clientService = new ClientService(connection);
+        this.goodsService = new GoodsService(connection);
     }
 
     private final String addOrder = "insert into mydb.orders (code,client_id) values(?,?)";
@@ -35,7 +37,7 @@ public class OrderService {
     private final String selectOrderByCode = "select * from mydb.orders where code=?";
 
     public void addOrder(String clPhoneNum, List<Goods> orderList) {
-        Client client = new ClientService(connection).isExists(clPhoneNum);
+        Client client = clientService.isExists(clPhoneNum);
         ResultSet resultSet = null;
         PreparedStatement statement;
         String code = generateCode();
@@ -77,7 +79,7 @@ public class OrderService {
 
     public void addToOrderGoods(int ordId, Goods goods) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(addGoodsToOrder);
-        Goods g = new GoodsService(connection).getByArticul(goods.getArticul());
+        Goods g = goodsService.getByArticul(goods.getArticul());
         if (null != g) {
             statement.setInt(1, ordId);
             statement.setInt(2, g.getId());
@@ -95,8 +97,8 @@ public class OrderService {
             ResultSet resultSet = statement.executeQuery();          
             if (resultSet.next()) {
                 order.setCode(resultSet.getString("code"));
-                order.setCustomer(new ClientService(connection).getById(resultSet.getInt("client_id")));
-                order.setGoods(new GoodsService(connection).getGoodsByOrdersId(resultSet.getInt("id")));
+                order.setCustomer(clientService.getById(resultSet.getInt("client_id")));
+                order.setGoods(goodsService.getGoodsByOrdersId(resultSet.getInt("id")));
             }            
         } catch (SQLException ex) {
             Logger.getLogger(OrderService.class.getName()).log(Level.SEVERE, null, ex);
@@ -132,7 +134,7 @@ public class OrderService {
         return curentCode;
     }
 
-    List<Order> getAll() {
+    public List<Order> getAll() {
          List<Order> orders = new ArrayList<>();
         try {           
             Statement statement = connection.createStatement();
@@ -146,7 +148,8 @@ public class OrderService {
     }
     
      public Order createOreder(ResultSet resultSet) throws SQLException {
-        Order order = new Order();
+        Order order = new Order();    
+        order.setId(resultSet.getInt("id"));
         order.setCode(resultSet.getString("code"));
         order.setCustomer(clientService.getById(resultSet.getInt("client_Id")));
         return order;

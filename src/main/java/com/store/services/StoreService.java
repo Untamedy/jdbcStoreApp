@@ -38,58 +38,59 @@ public class StoreService {
     public StoreService(ConnectionService connectionservice) {
         this.connectionservice = connectionservice;
         this.connection = connectionservice.getConnection();
+        this.goodsService = new GoodsService(connection);
+        this.orderService = new OrderService(connection);
+        this.clientService = new ClientService(connection);
     }
 
     public void addNewClient(String name, String phoneNum) {
-        clientService = new ClientService(connection);
+       
         clientService.addClient(name, phoneNum);
     }
 
     public void addGoods(String name, int articul) {
-        goodsService = new GoodsService(connection);
+        
         goodsService.addGoods(name, articul);
     }
 
     public void addOrder(String clPhone, List<Goods> orderList) {
-        orderService = new OrderService(connection);
+        
         orderService.addOrder(clPhone, orderList);
 
     }
 
     public Order getOrder(String code) {
-        orderService = new OrderService(connection);
+        
         return orderService.getOrder(code);
     }
 
     public List<Goods> getDataToOrder(int start, int end) throws SQLException {
-        List<Goods> sublistFortest = new GoodsService(connection).getGoodsSublist(start, end);
+        List<Goods> sublistFortest = goodsService.getGoodsSublist(start, end);
         return sublistFortest;
 
     }
 
-    public List<Client> getAllClient()  {
-        clientService = new ClientService(connection);
+    public List<Client> getAllClient()  {      
        List<Client> clients =  clientService.getAll();
        return clients;
         
     }
 
-    public List<Goods> getAllGoods()  {
-             goodsService = new GoodsService(connection);
+    public List<Goods> getAllGoods()  {            
        List<Goods> goods =  goodsService.getAll();
        return goods;
 
     }
 
-    public Goods getGoodsByArticul(int value) {
-       return  goodsService.getByArticul(value);
+    public Goods getGoodsByArticul(int value) {       
+               return  goodsService.getByArticul(value);
     }
 
-    public List<Order> getAllOrder() {
+    public List<Order> getAllOrder() {          
       return  orderService.getAll();
     }
     
-    public List<Goods> getByOrderCode(int id){
+    public List<Goods> getByOrderCode(int id){        
         return goodsService.getGoodsByOrdersId(id);
     }
 }

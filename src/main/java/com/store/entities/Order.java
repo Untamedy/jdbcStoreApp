@@ -58,7 +58,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" + "id=" + id + ", code=" + code + ", client=" + client + ", goods=" + goods + '}';
+        return "Order code=" + code + ", client=" + client + ", goods=" + goods + '}';
     }
     
     

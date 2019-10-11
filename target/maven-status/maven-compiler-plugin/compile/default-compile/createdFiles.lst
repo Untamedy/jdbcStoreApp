@@ -3,7 +3,6 @@ com\store\servlets\AddClientServlet.class
 com\store\services\GoodsService.class
 com\store\commonInit\InputData.class
 com\store\servlets\GetOrderServlet.class
-com\store\servlets\Lisr.class
 homework\store\Main.class
 com\store\services\OrderService.class
 com\store\commonInit\Init.class

@@ -8,9 +8,9 @@ package com.store.servlets;
 import com.store.commonInit.Init;
 import com.store.entities.Goods;
 import com.store.entities.Order;
-import com.store.services.GoodsService;
 import com.store.services.StoreService;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,7 +39,8 @@ public class GetOrderServlet extends HttpServlet{
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response){
-        List<Order> orders = service.getAllOrder();
+        List<Order> orders = new ArrayList<>();
+         orders = service.getAllOrder();
         request.setAttribute("list", orders);
          RequestDispatcher dispatcher = request.getRequestDispatcher("getOrder.jsp");
         try {
@@ -54,9 +55,8 @@ public class GetOrderServlet extends HttpServlet{
     public void doPost(HttpServletRequest request, HttpServletResponse response){
         String code = request.getParameter("code");
         Order order = service.getOrder(code);     
-        if(null!=order){
-            List<Goods> goods = service.getByOrderCode(order.getId());           
-            request.setAttribute("list", goods);
+        if(null!=order){                 
+            request.setAttribute("order", order);
          
               RequestDispatcher dispatcher = request.getRequestDispatcher("order.jsp");
             try {

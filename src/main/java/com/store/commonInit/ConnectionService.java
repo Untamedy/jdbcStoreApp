@@ -31,8 +31,8 @@ public class ConnectionService {
         Properties property = propReader.getProperties();
             Connection connection = null;
         try {            
-            Class.forName("org.postgresql.Driver");
-            // Class.forName("com.mysql.jdbc.Driver");
+            //Class.forName("org.postgresql.Driver");
+             Class.forName("com.mysql.jdbc.Driver");
             try {
                 connection = DriverManager.getConnection(property.getProperty("url"), property.getProperty("login"), property.getProperty("password"));
             } catch (SQLException ex) {
@@ -40,7 +40,7 @@ public class ConnectionService {
             }          
             
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ConnectionService.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(ConnectionService.class.getName()).log(Level.SEVERE, null, ex);
         }
 return connection;
     }

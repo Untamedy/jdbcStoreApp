@@ -18,8 +18,8 @@ public class ClientServiceTest extends Assert {
     private static ClientService clientService;
     private static ConnectionService connectionService;
     private static Connection conection;
-    private static String path = "src\\main\\resources\\prop.properties";
-    //private static String path = "src\\main\\resources\\propmysql.properties";
+   // private static String path = "src\\main\\resources\\prop.properties";
+    private static String path = "src\\main\\resources\\propmysql.properties";
     private static String sql = "src\\main\\resources\\createTable.txt";
 
     @BeforeClass

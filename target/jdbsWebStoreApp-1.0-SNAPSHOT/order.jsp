@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="com.store.entities.Order"%>
 <%@page import="com.store.entities.Goods"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,16 +16,15 @@
         <title>Dishes:</title>
     </head>
     <body>
-        <h1>This is the list of dishes:</h1>
+        <h1>Order info:</h1>
     </body>
     <ul>
         <%
-            List<Goods> goods = (List<Goods>) request.getAttribute("list");           
-            if (!goods.isEmpty()) {
-                for (Goods g : goods) {
-                    out.println("<h1>" + g.toString() + "</h1>");
+            Order order = (Order) request.getAttribute("order");
+            if (order != null) {
 
-                }
+                out.println("<h1>" + order.toString() + "</h1>");
+
             } else {
                 out.println("<h1>" + "Sorry, we don't have any information yet" + "</h1>");
             }

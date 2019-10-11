@@ -35,8 +35,8 @@ public class OrderServiceTest extends Assert {
     private static Connection connection;
     private static PropertyReader reader;
     private static List<Goods> goods = new ArrayList<>();
-   private static String path = "src\\main\\resources\\prop.properties";
-   // private static String path = "src\\main\\resources\\propmysql.properties";
+   //private static String path = "src\\main\\resources\\prop.properties";
+    private static String path = "src\\main\\resources\\propmysql.properties";
     
 
     @BeforeClass

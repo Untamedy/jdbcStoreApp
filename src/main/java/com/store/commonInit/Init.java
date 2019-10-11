@@ -20,8 +20,8 @@ public class Init {
     private PropertyReader propertyReader;
     private InputData inputData;
     private StoreService storeService;
-    private  String path = "C:\\Users\\YBolshakova\\Documents\\gs-maven\\jdbsStoreApp\\src\\main\\resources\\prop.properties";
-    //private String path = "C:\\Users\\Lenovo\\Documents\\NetBeansProjects\\jdbcFlatApp\\src\\main\\resources\\propmysql.properties";
+   // private  String path = "C:\\Users\\YBolshakova\\Documents\\gs-maven\\jdbsStoreApp\\src\\main\\resources\\prop.properties";
+    private String path = "C:\\Users\\Lenovo\\Documents\\NetBeansProjects\\jdbcStoreweb\\src\\main\\resources\\propmysql.properties";
 
     public Init() {
 
