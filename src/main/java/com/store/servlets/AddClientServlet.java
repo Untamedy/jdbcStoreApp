@@ -28,8 +28,8 @@ public class AddClientServlet extends HttpServlet{
     private Init init;
     
     public AddClientServlet(){
-        this.init = new Init();
-        this.service = init.getConnection();
+        this.init = Init.getInit();
+        this.service = init.getService();
     }
     
     

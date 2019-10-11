@@ -33,8 +33,8 @@ public class AddOrderServlet extends HttpServlet {
     private Init init;
 
     public AddOrderServlet() {
-        this.init = new Init();
-        this.service = init.getConnection();
+        this.init = Init.getInit();
+        this.service = init.getService();
     }
 
     @Override

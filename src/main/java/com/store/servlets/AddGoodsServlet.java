@@ -27,8 +27,8 @@ public class AddGoodsServlet extends HttpServlet{
     private Init init;
     
     public AddGoodsServlet(){
-        this.init = new Init();
-        this.service = init.getConnection();
+        this.init = Init.getInit();
+        this.service = init.getService();
     }
     
     
