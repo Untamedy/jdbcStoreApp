@@ -42,6 +42,11 @@ public class Goods {
     public void setArticul(int articul) {
         this.articul = articul;
     }
+
+    @Override
+    public String toString() {
+        return "name=" + name + ", articul=" + articul;
+    }
     
     
 

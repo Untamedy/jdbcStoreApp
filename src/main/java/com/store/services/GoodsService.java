@@ -1,6 +1,5 @@
 package com.store.services;
 
-
 import com.store.entities.Goods;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,13 +24,11 @@ public class GoodsService {
     public GoodsService(Connection connection) {
         this.connection = connection;
     }
-    
-    
 
     String addGoods = "INSERT into mydb.goods (name,articul) values (?,?) ";
 
     public void addGoods(String name, int articul) {
-        Goods goods = isExists(articul);
+        Goods goods = getByArticul(articul);
         if (null == goods) {
             try {
                 connection.setAutoCommit(false);
@@ -46,14 +43,14 @@ public class GoodsService {
                 } catch (SQLException ex1) {
                     LOGGER.warning(ex.getMessage());
                 }
-                LOGGER.warning(ex.getMessage());                
+                LOGGER.warning(ex.getMessage());
             }
         } else {
             LOGGER.log(Level.INFO, "Goods with this articul is alredy exists-> {0}", goods.toString());
         }
     }
 
-    public Goods isExists(int articul) {
+    public Goods getByArticul(int articul) {
         Goods goods = null;
         try {
             Statement statement = connection.createStatement();
@@ -71,11 +68,17 @@ public class GoodsService {
         return goods;
     }
 
-    public List<Goods> getGoodsByOrdersId(int orderId) throws SQLException {
+    public List<Goods> getGoodsByOrdersId(int orderId) {
         List<Goods> goods = new ArrayList<>();
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("select * from mydb.goods inner join mydb.orders_goods on mydb.orders_goods.order_id=" + orderId + " and mydb.orders_goods.goods_id = mydb.goods.id");
-        goods = createGoodsList(resultSet);
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from mydb.goods inner join mydb.orders_goods on mydb.orders_goods.order_id=" + orderId + " and mydb.orders_goods.goods_id = mydb.goods.id");
+            goods = createGoodsList(resultSet);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(GoodsService.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return goods;
     }
 
@@ -93,20 +96,33 @@ public class GoodsService {
         }
         return goods;
     }
-    
-    public List<Goods> getGoodsSublist(int start, int end) throws SQLException{
+
+    public List<Goods> getGoodsSublist(int start, int end) throws SQLException {
         List<Goods> list = new ArrayList<>();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select * from mydb.goods");
-        while(resultSet.next()){
-            list.add(createGoods(resultSet));            
-            
+        while (resultSet.next()) {
+            list.add(createGoods(resultSet));
+
         }
-        if(end>list.size()){
+        if (end > list.size()) {
             end = list.size();
         }
         List<Goods> sublist = list.subList(start, end);
         return sublist;
+    }
+
+    public List<Goods> getAll() {
+        List<Goods> goods = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from mydb.goods");
+            goods = createGoodsList(resultSet);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(GoodsService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return goods;
     }
 
 }

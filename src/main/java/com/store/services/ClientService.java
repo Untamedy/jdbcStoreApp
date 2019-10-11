@@ -2,11 +2,14 @@ package com.store.services;
 
 
 import com.store.entities.Client;
+import com.store.entities.Goods;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -89,6 +92,33 @@ public class ClientService {
         return client;
         
         
+    }
+    
+    private Client createClient(ResultSet resultSet) throws SQLException{
+        Client client = null;
+        if (resultSet.next()) {
+                client = new Client();
+                client.setId(resultSet.getInt("id"));
+                client.setName(resultSet.getString("name"));
+                client.setPersonalNumber(resultSet.getString("phoneNum"));
+            }
+        return client;
+    }
+
+     public List<Client> getAll()  {
+         List<Client> clients = new ArrayList<>();
+        try {            
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from mydb.clients");
+            while(resultSet.next()){
+                Client  client = createClient(resultSet);
+                clients.add(client);
+            }           
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return clients;
     }
 
 }

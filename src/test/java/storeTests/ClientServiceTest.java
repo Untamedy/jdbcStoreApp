@@ -1,8 +1,8 @@
 package storeTests;
 
-import com.commonInit.ConnectionService;
-import com.commonInit.InputData;
-import com.commonInit.PropertyReader;
+import com.store.commonInit.ConnectionService;
+import com.store.commonInit.InputData;
+import com.store.commonInit.PropertyReader;
 import com.store.entities.Client;
 import com.store.services.ClientService;
 import java.sql.Connection;

@@ -5,8 +5,9 @@
  */
 package com.store.services;
 
-import com.commonInit.ConnectionService;
-import com.commonInit.InputData;
+import com.store.commonInit.ConnectionService;
+import com.store.commonInit.InputData;
+import com.store.entities.Client;
 import com.store.entities.Goods;
 import com.store.entities.Order;
 import com.store.services.ClientService;
@@ -64,5 +65,31 @@ public class StoreService {
         List<Goods> sublistFortest = new GoodsService(connection).getGoodsSublist(start, end);
         return sublistFortest;
 
+    }
+
+    public List<Client> getAllClient()  {
+        clientService = new ClientService(connection);
+       List<Client> clients =  clientService.getAll();
+       return clients;
+        
+    }
+
+    public List<Goods> getAllGoods()  {
+             goodsService = new GoodsService(connection);
+       List<Goods> goods =  goodsService.getAll();
+       return goods;
+
+    }
+
+    public Goods getGoodsByArticul(int value) {
+       return  goodsService.getByArticul(value);
+    }
+
+    public List<Order> getAllOrder() {
+      return  orderService.getAll();
+    }
+    
+    public List<Goods> getByOrderCode(int id){
+        return goodsService.getGoodsByOrdersId(id);
     }
 }

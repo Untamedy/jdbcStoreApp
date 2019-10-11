@@ -1,0 +1,4 @@
+ConnectionTest\MySqlConnectionTest.class
+storeTests\OrderServiceTest.class
+storeTests\ClientServiceTest.class
+storeTests\GoodsServiceTest.class

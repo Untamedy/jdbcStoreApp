@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
@@ -76,7 +77,7 @@ public class OrderService {
 
     public void addToOrderGoods(int ordId, Goods goods) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(addGoodsToOrder);
-        Goods g = new GoodsService(connection).isExists(goods.getArticul());
+        Goods g = new GoodsService(connection).getByArticul(goods.getArticul());
         if (null != g) {
             statement.setInt(1, ordId);
             statement.setInt(2, g.getId());
@@ -129,6 +130,34 @@ public class OrderService {
         int code = random.nextInt();
         String curentCode = "order_" + code;
         return curentCode;
+    }
+
+    List<Order> getAll() {
+         List<Order> orders = new ArrayList<>();
+        try {           
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from mydb.orders");
+            orders = createOrderList(resultSet);      
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return orders;
+    }
+    
+     public Order createOreder(ResultSet resultSet) throws SQLException {
+        Order order = new Order();
+        order.setCode(resultSet.getString("code"));
+        order.setCustomer(clientService.getById(resultSet.getInt("client_Id")));
+        return order;
+    }
+
+    public List<Order> createOrderList(ResultSet resultSet) throws SQLException {
+        List<Order> orders = new ArrayList<>();
+        while (resultSet.next()) {
+            orders.add(createOreder(resultSet));
+        }
+        return orders;
     }
 
 }

@@ -5,9 +5,9 @@
  */
 package storeTests;
 
-import com.commonInit.ConnectionService;
-import com.commonInit.InputData;
-import com.commonInit.PropertyReader;
+import com.store.commonInit.ConnectionService;
+import com.store.commonInit.InputData;
+import com.store.commonInit.PropertyReader;
 import com.store.entities.Goods;
 import com.store.entities.Order;
 import com.store.services.GoodsService;
@@ -35,8 +35,8 @@ public class OrderServiceTest extends Assert {
     private static Connection connection;
     private static PropertyReader reader;
     private static List<Goods> goods = new ArrayList<>();
-   // private static String path = "src\\main\\resources\\prop.properties";
-    private static String path = "src\\main\\resources\\propmysql.properties";
+   private static String path = "src\\main\\resources\\prop.properties";
+   // private static String path = "src\\main\\resources\\propmysql.properties";
     
 
     @BeforeClass

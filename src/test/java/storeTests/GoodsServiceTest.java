@@ -1,8 +1,8 @@
 package storeTests;
 
-import com.commonInit.ConnectionService;
-import com.commonInit.InputData;
-import com.commonInit.PropertyReader;
+import com.store.commonInit.ConnectionService;
+import com.store.commonInit.InputData;
+import com.store.commonInit.PropertyReader;
 import com.store.entities.Goods;
 import com.store.services.GoodsService;
 import java.sql.Connection;
@@ -22,8 +22,8 @@ public class GoodsServiceTest extends Assert {
     private static GoodsService goodsService;
     private static ConnectionService connectionService;
     private static Connection connection;
-    //private static String path = "src\\main\\resources\\prop.properties";
-    private static String path = "src\\main\\resources\\propmysql.properties";
+    private static String path = "src\\main\\resources\\prop.properties";
+    //private static String path = "src\\main\\resources\\propmysql.properties";
 
     @BeforeClass
     public static void init() {
@@ -42,7 +42,7 @@ public class GoodsServiceTest extends Assert {
     @Test
     public void addGoods() {
         goodsService.addGoods("Bananas", 2056854);
-        Goods newGoods = goodsService.isExists(2056854);
+        Goods newGoods = goodsService.getByArticul(2056854);
         assertNotNull(newGoods);
 
     }
@@ -50,7 +50,7 @@ public class GoodsServiceTest extends Assert {
     @Test
     public void addAlredyExistsGoods() {
         goodsService.addGoods("Toys", 2056854);
-        Goods goods = goodsService.isExists(2056854);
+        Goods goods = goodsService.getByArticul(2056854);
         assertTrue(!goods.getName().equals("Toys"));
 
     }
