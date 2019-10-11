@@ -26,13 +26,16 @@ public class StoreService {
 
     private static final Logger LOGGER = Logger.getLogger(InputData.class.getName());
 
-    private ClientService clientService;
-    private GoodsService goodsService;
-    private OrderService orderService;
-    private ConnectionService connectionservice;
-    private Connection connection;
+    private  ClientService clientService;
+    private  GoodsService goodsService;
+    private  OrderService orderService;
+    private  ConnectionService connectionservice;
+    private  Connection connection;
+    
 
-    public StoreService() {
+
+    private StoreService() {
+        
     }
 
     public StoreService(ConnectionService connectionservice) {
@@ -42,6 +45,8 @@ public class StoreService {
         this.orderService = new OrderService(connection);
         this.clientService = new ClientService(connection);
     }
+    
+   
 
     public void addNewClient(String name, String phoneNum) {
        

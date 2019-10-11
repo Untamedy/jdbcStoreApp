@@ -6,7 +6,6 @@
 package com.store.servlets;
 
 import com.store.commonInit.Init;
-import com.store.entities.Goods;
 import com.store.entities.Order;
 import com.store.services.StoreService;
 import java.io.IOException;
@@ -33,8 +32,8 @@ public class GetOrderServlet extends HttpServlet{
     private Init init;
     
     public GetOrderServlet(){
-        this.init = new Init();
-        this.service = init.getConnection();
+       this.init = Init.getInit();
+        this.service = init.getService();
     }
     
     @Override
